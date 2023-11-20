@@ -4,7 +4,7 @@ import PaletteColor from './PaletteColor.jsx'
 const Palette = ({colors}) => {
 
   return (
-    <div>{colors.map((color, i) => (
+    <div className="flex">{colors.map((color, i) => (
       <PaletteColor key={i} color={color}/>
     ))}
     </div>

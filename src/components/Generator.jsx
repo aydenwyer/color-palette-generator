@@ -12,7 +12,7 @@ const Generator = () => {
 
     function GetPalette() {
         const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        const url = `https://www.thecolorapi.com/scheme?hex=${randomColor}&format=json&mode=monochrome&count=5`;
+        const url = `https://www.thecolorapi.com/scheme?hex=${randomColor}&format=json&mode=analogic&count=5`;
 
         fetch(url)
             .then(res => {
