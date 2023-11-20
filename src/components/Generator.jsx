@@ -11,15 +11,20 @@ const Generator = () => {
     }, []);
 
     function GetPalette() {
-        const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        const url = `https://www.thecolorapi.com/scheme?hex=${randomColor}&format=json&mode=analogic&count=5`;
+        const url = "http://colormind.io/api/";
+        const data = {
+            method: 'POST',
+            body: JSON.stringify({
+              model: 'default',        
+            })
+        }
 
-        fetch(url)
+        fetch(url, data)
             .then(res => {
                 return res.json();
             })  
             .then(data => {
-                setPalette(data.colors);
+                setPalette(data.result);
             });
     }
 

@@ -4,7 +4,7 @@ const PaletteColor = ({color}) => {
   
 
   return (
-    <div className="w-[100px] h-[100px]" style={{backgroundColor: color.hex.value}}>{color.hex.value}</div>
+    <div className="w-[100px] h-[100px]" style={{backgroundColor: "rgb(" + color.toString() + ")"}}>{color.toString()}</div>
   )
 }
 
