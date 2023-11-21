@@ -25,7 +25,9 @@ const PaletteColor = ({color}) => {
 
   return (
     <div className="w-[200px] h-[300px] flex flex-col px-1 pt-1 pb-3 gap-3 items-center transition-transform ease-out bg-white hover:-translate-y-1 hover:shadow-soft">
-      <div className="w-full h-full" style={{backgroundColor: "rgb(" + color.toString() + ")"}}></div>
+      <div className="w-full h-full p-3 flex items-end justify-center text-xs font-normal" style={{backgroundColor: "rgb(" + color.toString() + ")", color: info.contrast}}>
+        {info.name}
+      </div>
       <p>{info.hex}</p>
     </div>
     
