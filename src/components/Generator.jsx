@@ -29,9 +29,9 @@ const Generator = () => {
     }
 
   return (
-    <section>
-        <button onClick={GetPalette}>Generate</button>
+    <section className="flex items-center justify-center flex-col h-screen gap-12">
         {palette && <Palette colors={palette}/>}
+        <button className="bg-black text-white px-6 py-3 text-base leading-none" onClick={GetPalette}>Generate</button>
     </section>
   )
 }

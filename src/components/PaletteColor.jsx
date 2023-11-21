@@ -4,6 +4,7 @@ const PaletteColor = ({color}) => {
   const [info, setInfo] = useState({
     name: "",
     contrast: "",
+    hex: "",
   });
   
   useEffect(() => {
@@ -16,13 +17,18 @@ const PaletteColor = ({color}) => {
       .then(data => {
         setInfo({
           name: data.name.value,
-          contrast: data.contrast.value
+          contrast: data.contrast.value,
+          hex: data.hex.value
         })
       })
   }, [color]);
 
   return (
-    <div className="w-[100px] h-[100px]" style={{backgroundColor: "rgb(" + color.toString() + ")", color: info.contrast}}>{info.name}</div>
+    <div className="w-[200px] h-[300px] flex flex-col px-1 pt-1 pb-3 gap-3 items-center transition-transform ease-out bg-white hover:-translate-y-1 hover:shadow-soft">
+      <div className="w-full h-full" style={{backgroundColor: "rgb(" + color.toString() + ")"}}></div>
+      <p>{info.hex}</p>
+    </div>
+    
   )
 }
 
