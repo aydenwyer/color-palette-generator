@@ -30,7 +30,7 @@ const Generator = () => {
 
   return (
     <section>
-        <button onClick={GetPalette}>Generate Random Palette</button>
+        <button onClick={GetPalette}>Generate</button>
         {palette && <Palette colors={palette}/>}
     </section>
   )
