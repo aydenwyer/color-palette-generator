@@ -1,12 +1,12 @@
 import React from 'react'
 import PaletteColor from './PaletteColor.jsx'
 
-const Palette = ({colors}) => {
+const Palette = ({colors, clipState}) => {
 
   return (
-    <div className="flex relative gap-4">
+    <div className="flex gap-4">
       {colors.map((color, i) => (
-        <PaletteColor key={i} color={color}/>
+        <PaletteColor key={i} color={color} clipState={clipState}/>
       ))}
     </div>
   )
