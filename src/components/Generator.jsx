@@ -5,7 +5,8 @@ import { useState, useEffect } from 'react'
 const Generator = () => {
 
     const [palette, setPalette] = useState(null);
-    const [nextPalette, setNextPalette] = useState(null);
+    const [nextPalette, setNextPalette] = useState([]);
+    const [paletteIndex, setPaletteIndex] = useState(0);
     const [copyToClip, setCopyToClip] = useState({hexValue: "", show: false});
 
     const url = "http://colormind.io/api/";
@@ -15,6 +16,33 @@ const Generator = () => {
             model: 'default',        
         })
     }
+
+    useEffect(() => {
+
+        generateInitialPalette();
+
+        generateNextPalette();
+
+    }, [])
+
+    const generateInitialPalette = async () => {
+        
+        const response = await fetch(url, info);
+        const randomPalette = await response.json();
+
+        setPalette(randomPalette.result);
+    }
+
+    const generateNextPalette = async () => {
+        const requests = Array.from({ length: 25 }, async () => {
+            const response = await fetch(url, info);
+            const nextPalette = await response.json();
+            return nextPalette.result;
+        });
+    
+        const palettes = await Promise.all(requests);
+        setNextPalette(prevArray => [...prevArray, ...palettes]);
+    };
 
     useEffect(() => {
         const showCopyToClip = () => {
@@ -32,37 +60,18 @@ const Generator = () => {
         };
     }, [copyToClip])
 
-    useEffect(() => {
-        fetch(url, info)
-            .then(res => {
-                return res.json();
-            })  
-            .then(data => {
-                setPalette(data.result);
-            });
-            
-        GetNextPalette()
-    }, []);
-
-    function GetNextPalette() {
-        fetch(url, info)
-            .then(res => {
-                return res.json();
-            })  
-            .then(data => {
-                setNextPalette(data.result);
-            });
-    }
-
     function Generate() {
-        setPalette(nextPalette);
-        GetNextPalette();
+        setPalette(nextPalette[paletteIndex]);
+        setPaletteIndex(paletteIndex + 1);
+        if (paletteIndex >= nextPalette.length - 5) {
+            generateNextPalette();
+        }
     }
     
   return (
     <section className="flex items-center justify-center flex-col h-screen gap-12">
 
-        {copyToClip.show && <p class="absolute top-32 mx-auto bg-black text-white text-xs rounded-full px-3 py-1 font-normal">{`Color code ${copyToClip.hexValue} copied to clipboard`}</p>}
+        {copyToClip.show && <p class="absolute top-32 mx-auto bg-black text-white text-xs rounded-full px-3 py-1 font-normal z-50">{`Color code ${copyToClip.hexValue} copied to clipboard`}</p>}
 
         {palette && <Palette colors={palette} clipState={setCopyToClip}/>}
 
