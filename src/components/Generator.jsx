@@ -44,10 +44,10 @@ const Generator = () => {
         setNextPalette(prevArray => [...prevArray, ...palettes]);
     };
 
-    useEffect(() => {
+    useEffect(() => {        
         const showCopyToClip = () => {
             setTimeout(() => {
-                setCopyToClip({hexValue: "", show: false});
+                setCopyToClip({...copyToClip, show: false});
             }, 3000);
         };
 
@@ -71,7 +71,7 @@ const Generator = () => {
   return (
     <section className="flex items-center justify-center flex-col h-screen gap-12">
 
-        {copyToClip.show && <p class="absolute top-32 mx-auto bg-black text-white text-xs rounded-full px-3 py-1 font-normal z-50">{`Color code ${copyToClip.hexValue} copied to clipboard`}</p>}
+        <p style={copyToClip.show ? {opacity: 1} : {opacity: 0}} className="absolute top-32 mx-auto bg-black text-white text-xs rounded-full px-3 py-1 font-normal z-50 transition-opacity ease-out delay-150">Color code <span className="font-bold">{copyToClip.hexValue}</span> copied to clipboard</p>
 
         {palette && <Palette colors={palette} clipState={setCopyToClip}/>}
 
