@@ -1,6 +1,6 @@
 import React from 'react'
 import Palette from './Palette.jsx'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const Generator = () => {
 
@@ -8,6 +8,7 @@ const Generator = () => {
     const [nextPalette, setNextPalette] = useState([]);
     const [paletteIndex, setPaletteIndex] = useState(0);
     const [copyToClip, setCopyToClip] = useState({hexValue: "", show: false});
+    const timeout = useRef();
 
     const url = "http://colormind.io/api/";
     const info = {
@@ -46,12 +47,13 @@ const Generator = () => {
 
     useEffect(() => {        
         const showCopyToClip = () => {
-            setTimeout(() => {
+            timeout.current = setTimeout(() => {
                 setCopyToClip({...copyToClip, show: false});
             }, 3000);
         };
 
         if (copyToClip.show) {
+            clearTimeout(timeout.current);
             showCopyToClip()
         };
 
