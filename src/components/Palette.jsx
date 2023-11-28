@@ -4,7 +4,7 @@ import PaletteColor from './PaletteColor.jsx'
 const Palette = ({colors, clipState}) => {
 
   return (
-    <div className="flex gap-4">
+    <div className="grid gap-4 grid-cols-autofit w-full justify-center">
       {colors.map((color, i) => (
         <PaletteColor key={i} color={color} clipState={clipState}/>
       ))}

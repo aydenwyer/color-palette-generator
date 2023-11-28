@@ -42,7 +42,7 @@ const PaletteColor = ({color, clipState}) => {
 
   return (
     <div 
-      className={`w-[200px] h-[300px] flex flex-col px-1 pt-1 pb-3 gap-3 items-center transition-transform ease-out bg-white text-gray-700 hover:-translate-y-1 hover:shadow-soft hover:text-black cursor-pointer ${cardClick ? "click" : ""}`}
+      className={`h-[300px] flex flex-col px-1 pt-1 pb-3 gap-3 items-center transition-transform ease-out bg-white text-gray-700 hover:-translate-y-1 hover:shadow-soft hover:text-black cursor-pointer ${cardClick ? "click" : ""}`}
       onClick={() => {
         navigator.clipboard.writeText(info.hex);
         clipState({hexValue: info.hex, show: true});

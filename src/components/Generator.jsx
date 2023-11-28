@@ -71,7 +71,7 @@ const Generator = () => {
     }
     
   return (
-    <section className="flex items-center justify-center flex-col h-screen gap-12">
+    <section className="flex items-center justify-center flex-col h-screen gap-12 w-full px-10">
 
         <p style={copyToClip.show ? {opacity: 1} : {opacity: 0}} className="absolute top-[25%] mx-auto bg-black text-white text-xs rounded-full px-4 py-2 font-normal z-50 transition-opacity ease-out delay-150">Color code <span className="font-bold">{copyToClip.hexValue}</span> copied to clipboard</p>
 

@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       boxShadow:{
         'soft': '0 0 15px rgb(0 0 0 / .1)'
+      },
+      gridTemplateColumns: {
+        'autofit': 'repeat(auto-fit, 200px)'
       }
     },
   },
