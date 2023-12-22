@@ -10,7 +10,7 @@ const Generator = () => {
     const [copyToClip, setCopyToClip] = useState({hexValue: "", show: false});
     const timeout = useRef();
 
-    const url = "http://colormind.io/api/";
+    const url = "https://colormind.io/api/";
     const info = {
         method: 'POST',
         body: JSON.stringify({
